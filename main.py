@@ -6,10 +6,8 @@ from app.busstops import router as busstops_router
 from app.adresses import router as adresses_router
 from app.lines import router as lines_router
 from starlette.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
+from app.infos import SECRET_KEY, DATABASE_URL
 
-
-load_dotenv()
 
 app = FastAPI()
 

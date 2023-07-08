@@ -7,6 +7,8 @@ from sqlalchemy.orm import Session
 from models.schemas import BusstopCreate, Busstop
 from models.user import User
 from app import crud
+from app.infos import SECRET_KEY, DATABASE_URL
+
 
 router = APIRouter()
 

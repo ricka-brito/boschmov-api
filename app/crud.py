@@ -4,6 +4,9 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from models import models, schemas
 import datetime
+from app.infos import SECRET_KEY, DATABASE_URL
+
+
 def get_busstop(db: Session, busstop_id: int):
     return db.query(models.Busstop).filter(models.Busstop.idBusStop == busstop_id).first()
 

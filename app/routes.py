@@ -1,13 +1,11 @@
 import requests
 import os
 import mysql.connector
-from dotenv import *
+from app.infos import SECRET_KEY, DATABASE_URL
 
 from app import SessionLocal, crud
 from app.crud import get_bustops_by_adress
 from models.models import Adress
-
-load_dotenv()
 
 
 def closestpoints(db : SessionLocal, initial: str):

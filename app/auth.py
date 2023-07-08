@@ -10,14 +10,13 @@ from fastapi import Depends, HTTPException
 from jose import jwt, JWTError
 from models.user import User
 from .database import SessionLocal
+from .infos import SECRET_KEY, DATABASE_URL
 
 router = APIRouter()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 pwd_context = bcrypt.using(rounds=12)
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-DATABASE_URL = os.environ.get("DATABASE_URL")
 
 
 def authenticate_user(session, username: str, password: str):
@@ -28,7 +27,6 @@ def authenticate_user(session, username: str, password: str):
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
-    secret_key = os.environ.get("SECRET_KEY")
     algorithm = "HS256"
     to_encode = data.copy()
     if expires_delta:
@@ -36,7 +34,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     else:
         expire = datetime.utcnow() + timedelta(minutes=15)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, secret_key, algorithm=algorithm)
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=algorithm)
     return encoded_jwt
 
 
