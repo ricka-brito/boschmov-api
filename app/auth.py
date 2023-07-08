@@ -78,7 +78,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
             "admin": user.admin,
         }
         token = create_access_token(token_data)
-        return {"access_token": token, "token_type": "bearer"}
+        return {"access_token": token, "token_type": "bearer", "admin": user.admin}
 
 
 @router.post("/create_user")
