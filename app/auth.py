@@ -44,10 +44,9 @@ def get_user(username: str):
         return user
 
 def verify_token(token: str):
-    secret_key = os.environ.get("SECRET_KEY")
     algorithm = "HS256"
     try:
-        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[algorithm])
         username = payload.get("sub")
         if username is None:
             raise HTTPException(status_code=401, detail="Invalid authentication token")

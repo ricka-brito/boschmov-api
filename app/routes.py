@@ -40,7 +40,3 @@ def closestpoints(db : SessionLocal, initial: str):
     }
 
 
-db = SessionLocal()
-
-
-print(closestpoints(db, "rua ricardo orlando tim hortolandia")["closest_route"]["bustop"][0].idAdress)
